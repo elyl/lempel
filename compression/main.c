@@ -3,5 +3,5 @@
 
 int main()
 {
-  clempel("toto");
+  clempel("TOBEORNOTTOBEORNOT");
 }
