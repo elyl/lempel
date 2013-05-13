@@ -6,7 +6,7 @@ void clempel(char *str)
 {
   t_list	*st;
   t_list	*tmp;
-  char		w[5];
+  char		w[255];
   char		wc[255];
   char		c;
   
@@ -18,7 +18,6 @@ void clempel(char *str)
       strcpy(&wc[0], &w[0]);
       strncat(&wc[0], str, 1);
       tmp = get_from_list(&wc[0], st);
-      printf("w:%s c:%c wc:%s\n", &w[0], c, &wc[0]);
       if (tmp != NULL)
 	strcpy(&w[0], &wc[0]);
       else
@@ -27,7 +26,6 @@ void clempel(char *str)
 	  strncpy(&w[0], str, 1);
 	  w[1] = '\0';
 	}
-      //printf("w:%s c:%c wc:%s\n", &w[0], c, &wc[0]);
       str++;
     }
   print_list(st);
