@@ -10,10 +10,12 @@ t_list *init_list()
   st = NULL;
   i = 0;
   tmp[1] = '\0';
+  tmp[0] = i++;
+  st = add_to_list(&tmp[0], st);
   while (i < 128)
     {
       tmp[0] = i++;
       add_to_list(&tmp[0], st);
-      printf("%d\n", i);
     }
+  return (st);
 }
