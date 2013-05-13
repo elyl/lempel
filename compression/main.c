@@ -1,6 +1,7 @@
 #include <stdio.h>
+#include "clempel.h"
 
 int main()
 {
-  printf("Hello world !\n");
+  clempel("toto");
 }

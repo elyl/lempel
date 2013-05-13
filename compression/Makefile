@@ -1,5 +1,9 @@
 NAME=	climpel
-SRC=	main.c
+SRC=	main.c 		\
+	clempel.c 	\
+	free_list.c 	\
+	print_list.c 	\
+	add_to_list.c
 OBJ= 	$(SRC:.c=.o)
 
 $(NAME): $(OBJ)
