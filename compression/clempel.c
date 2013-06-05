@@ -1,14 +1,19 @@
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 #include "clempel.h"
 
-void clempel(char *str)
+void encode(int fin, int fout)
 {
   t_list	*st;
   t_list	*tmp;
   char		w[255];
   char		wc[255];
+  char		*str;
   
+  str = malloc(256);
+  read(fin, str, 255);
+  str[255] = '\0';
   st = init_list();
   w[0] = '\0';
   while (*str)
@@ -23,9 +28,13 @@ void clempel(char *str)
 	  add_to_list(&wc[0], st);
 	  w[0] = *str;
 	  w[1] = '\0';
+	  tmp = get_from_list(&wc[0], st);
+	  write(fout, &tmp->code, 1);
 	}
       str++;
     }
+  tmp = get_from_list(&w[0], st);
+  write(fout, &tmp->code, 1);
   print_list(st);
   free_list(st);
 }

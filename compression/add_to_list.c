@@ -4,7 +4,7 @@
 
 t_list *add_to_list(char *str, t_list *st)
 {
-  static int	code = FIRST_CODE;
+  static int	code = 0;
   t_list	*tmp;
 
   tmp = NULL;
