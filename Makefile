@@ -1,16 +1,26 @@
-export CC=	gcc
-export CFLAGS=	-W -Wall -g
-export RM=	@rm -vf
-CDIR=		compression
-DDIR=		decompression
+NAME=	lzw
+SRC=	main.c 		\
+	encode.c 	\
+	decode.c	\
+	init_list.c	\
+	free_list.c 	\
+	print_list.c 	\
+	add_to_list.c	\
+	get_from_list.c \
+	get_from_code.c 
 
-climpel:
-	@(cd $(CDIR) && $(MAKE))
+OBJ= 	$(SRC:.c=.o)
+CC=	gcc
+CFLAGS=	-W -Wall -g
+
+
+$(NAME): $(OBJ)
+	$(CC) $(CFLAGS) -o ../$(NAME) $(OBJ)
 
 clean:
-	@(cd $(CDIR) && $(MAKE) $@)
+	$(RM) $(OBJ)
 
 fclean:
-	@(cd $(CDIR) && $(MAKE) $@)
+	$(RM) ../$(NAME)
 
-re: clean fclean $(NAME)
+re: fclean clean $(NAME)
