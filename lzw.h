@@ -3,7 +3,6 @@
 
 #define BUFFER_SIZE	255
 #define DICT_SIZE	(1 << 20)
-#define HASH_SIZE	DICT_SIZE
 #define CODE_NULL	DICT_SIZE
 
 typedef struct s_bitbuffer
