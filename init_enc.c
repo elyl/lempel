@@ -5,8 +5,9 @@ void init_enc(t_enc *ctx)
 {
   int	i;
 
-  ctx->code = 259;
+  ctx->code_max = 259;
   ctx->nbits = 8;
+  ctx->code = 0;
   ctx->bb.n = 0;
   i = 0;
   while (i < 256)
