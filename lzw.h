@@ -1,22 +1,40 @@
-#ifndef __CLEMPEL_H__
-#define __CLEMPEL_H__
+#ifndef __LZW_H__
+#define __LZW_H__
 
-typedef struct s_list
+#define BUFFER_SIZE	255
+#define DICT_SIZE	(1 << 20)
+#define HASH_SIZE	DICT_SIZE
+#define CODE_NULL	DICT_SIZE
+
+typedef struct s_bitbuffer
 {
-  unsigned int		code;
-  unsigned char		*str;
-  struct s_list	*next;
-}	t_list;
+  unsigned int	buf;
+  unsigned int	n;
+}	t_bitbuffer;
 
-void	free_list(t_list *st);
-void	print_list(t_list *st);
-void	print_output(short *tab);
-void	encode(int fin, int fout);
-void	decode(int fin, int fout);
+typedef struct s_elem
+{
+  unsigned int	prev;
+  struct s_elem	*next;
+  struct s_elem *child;
+  unsigned char	c;
+}	t_elem;
 
-t_list	*init_list();
-t_list	*add_to_list(char *str, t_list *st);
-t_list	*get_from_list(char *str, t_list *st);
-t_list	*get_from_code(unsigned int code, t_list *st);
+typedef struct s_enc
+{
+  t_bitbuffer	bb;
+  int		code;
+  int		fin;
+  int		fout;
+  unsigned int	nbits;
+  t_elem	dict[4096];
+}	t_enc;
+
+void		encode(t_enc *ctx);
+void		decode(t_enc *ctx);
+void		init_enc(t_enc *ctx);
+void		add_str(unsigned char c, int code, t_enc *ctx);
+
+t_elem		*search_str(unsigned char c, int code, t_enc *ctx);
 
 #endif
