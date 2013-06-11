@@ -5,8 +5,6 @@
 
 void encode(t_enc *ctx)
 {
-  unsigned char		w[BUFFER_SIZE];
-  unsigned char		wc[BUFFER_SIZE];
   char			str[BUFFER_SIZE];
   int			size;
   int			i;
@@ -21,6 +19,14 @@ void encode(t_enc *ctx)
       while (i < size)
 	{
 	  tmp = search_str(str[i], code, ctx);
+	  if (tmp == NULL)
+	    {
+	      write_bits(ctx, code, ctx->nbits);
+	      add_str(str[i], code, ctx);
+	      code = str[i];	     
+	    }
+	  else
+	    code = tmp->code;
 	  if (ctx->code == (1 << ctx->nbits))
 	    ctx->code++;
 	  i++;

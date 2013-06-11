@@ -1,7 +1,7 @@
 #include <unistd.h>
 #include "lzw.h"
 
-void wrtie_bits(t_enc *ctx, unsigned int code, int nbits)
+void write_bits(t_enc *ctx, unsigned int code, int nbits)
 {
   unsigned int	pos;
   unsigned char buffer[256];

@@ -18,12 +18,13 @@ typedef struct s_elem
   struct s_elem	*next;
   struct s_elem *child;
   unsigned char	c;
+  unsigned int code;
 }	t_elem;
 
 typedef struct s_enc
 {
   t_bitbuffer	bb;
-  int		code;
+  unsigned int	code;
   int		fin;
   int		fout;
   unsigned int	nbits;
@@ -34,6 +35,7 @@ void		encode(t_enc *ctx);
 void		decode(t_enc *ctx);
 void		init_enc(t_enc *ctx);
 void		add_str(unsigned char c, int code, t_enc *ctx);
+void		write_bits(t_enc *ctx, unsigned int code, int nbits);
 
 t_elem		*search_str(unsigned char c, int code, t_enc *ctx);
 
