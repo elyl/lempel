@@ -1,9 +1,6 @@
 #include "lzw.h"
 
-void decode(int fin, int fout)
+void decode(t_enc *ctx)
 {
-  t_list	*st;
-
-  st = init_list();
-  free_list(st);
+  
 }
