@@ -7,7 +7,7 @@ void write_bits(t_enc *ctx, unsigned int code, int nbits)
   unsigned char buffer[256];
 
   pos = 0;
-  ctx->bb.buf = ((ctx->bb.buf >> nbits) | (code & ((1 << nbits) - 1)));
+  ctx->bb.buf = ((ctx->bb.buf << nbits) | (code & ((1 << nbits) - 1)));
   nbits += ctx->bb.n;
   while (nbits >= 8)
     {
