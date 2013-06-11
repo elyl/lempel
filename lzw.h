@@ -24,11 +24,12 @@ typedef struct s_elem
 typedef struct s_enc
 {
   t_bitbuffer	bb;
-  unsigned int	code;
+  unsigned int	code_max;
+  int		code;
   int		fin;
   int		fout;
   unsigned int	nbits;
-  t_elem	dict[4096];
+  t_elem	dict[DICT_SIZE];
 }	t_enc;
 
 void		encode(t_enc *ctx);
@@ -36,6 +37,7 @@ void		decode(t_enc *ctx);
 void		init_enc(t_enc *ctx);
 void		add_str(unsigned char c, int code, t_enc *ctx);
 void		write_bits(t_enc *ctx, unsigned int code, int nbits);
+void		print_dict(t_enc *ctx);
 
 t_elem		*search_str(unsigned char c, int code, t_enc *ctx);
 

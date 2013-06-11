@@ -8,27 +8,25 @@ void encode(t_enc *ctx)
   char			str[BUFFER_SIZE];
   int			size;
   int			i;
-  int			code;
   t_elem		*tmp;
   
-  code = 0;
   init_enc(ctx);
   while ((size = read(ctx->fin, &str[0], BUFFER_SIZE)))
     {
       i = 0;
       while (i < size)
 	{
-	  tmp = search_str(str[i], code, ctx);
+	  tmp = search_str(str[i], ctx->code, ctx);
 	  if (tmp == NULL)
 	    {
-	      write_bits(ctx, code, ctx->nbits);
-	      add_str(str[i], code, ctx);
-	      code = str[i];	     
+	      write_bits(ctx, ctx->code, ctx->nbits);
+	      add_str(str[i], ctx->code, ctx);
+	      ctx->code = str[i];	     
 	    }
 	  else
-	    code = tmp->code;
-	  if (ctx->code == (1 << ctx->nbits))
-	    ctx->code++;
+	    ctx->code = tmp->code;
+	  if (ctx->code_max == (1 << ctx->nbits))
+	    ctx->code_max++;
 	  i++;
 	}
     }

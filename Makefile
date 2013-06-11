@@ -5,7 +5,8 @@ SRC=	main.c 		\
 	init_enc.c	\
 	search_str.c	\
 	add_str.c	\
-	write_bits.c
+	write_bits.c	\
+	print_dict.c
 
 OBJ= 	$(SRC:.c=.o)
 CC=	gcc
